@@ -313,3 +313,153 @@ class Solution {
         return count;
     }
 }
+
+
+
+1528. Shuffle String
+
+class Solution {
+    public String restoreString(String s, int[] indices) {
+        char[] ans = new char[s.length()];
+
+        for(int i=0; i<indices.length; i++){
+            ans[indices[i]] = s.charAt(i);
+        }
+        return new String(ans);
+    }
+}
+
+
+
+1816. Truncate Sentence
+
+class Solution {
+    public String truncateSentence(String s, int k) {
+        int count=0;
+        int i;
+
+        for(i=0; i<s.length(); i++){
+            if(s.charAt(i) == ' '){
+                count++;
+                if(count == k){
+                    break;
+                }
+            }
+        }
+        return s.substring(0,i);
+    }
+}
+
+
+
+2535. Difference Between Element Sum and Digit Sum of an Array
+
+
+class Solution {
+
+    public int digitSum(int n){
+        int sum=0;
+        while(n>0){
+            sum += n%10;
+            n = n/10;
+        }
+        return sum;
+    }
+
+    public int differenceOfSum(int[] nums) {
+        int elementSum = 0;
+        int digiSum = 0;
+
+        for(int i=0; i<nums.length; i++){
+            elementSum += nums[i];
+            digiSum += digitSum(nums[i]);
+        }
+        return Math.abs(elementSum - digiSum);
+    }
+        
+}
+
+
+
+2367. Number of Arithmetic Triplets
+
+
+class Solution {
+    public int arithmeticTriplets(int[] nums, int diff) {
+        int count =0;
+
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1 ; j<nums.length; j++){
+                for(int k=j+1; k<nums.length; k++){
+                    if(nums[j] - nums[i]==diff && nums[k] - nums[j] == diff){
+                        count++;
+                    }
+                }
+            }
+        }
+        return count;
+
+    }
+}
+
+
+
+
+2006. Count Number of Pairs With Absolute Difference K
+
+
+class Solution {
+    public int countKDifference(int[] nums, int k) {
+        int count=0;
+        
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1; j<nums.length; j++){
+                if(Math.abs(nums[i] - nums[j]) == k){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+}
+
+
+
+
+1913. Maximum Product Difference Between Two Pairs
+
+
+class Solution {
+    public int maxProductDifference(int[] nums) {
+        int maxPro = Integer.MIN_VALUE;
+        int minPro = Integer.MAX_VALUE;
+        int prod ;
+
+        for(int i=0; i<nums.length; i++){
+            for(int j=i+1; j<nums.length; j++){
+                prod = nums[i]*nums[j];
+                maxPro = Math.max(maxPro,prod);
+                minPro = Math.min(minPro,prod);
+            }
+        }
+        return Math.abs(maxPro-minPro);
+    }
+}
+
+
+
+
+2433. Find The Original Array of Prefix Xor
+
+
+class Solution {
+    public int[] findArray(int[] pref) {
+        int[] ans = new int[pref.length];
+        ans[0] = pref[0];
+        
+        for(int i=1; i<pref.length; i++){
+            ans[i] = pref[i] ^ pref[i-1];
+        }
+        return ans;
+    }
+}
